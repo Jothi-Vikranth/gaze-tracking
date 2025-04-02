@@ -6,6 +6,11 @@ import threading
 from datetime import datetime
 import pyautogui
 from utils import Camera, Speak, get_data, collect_landmark_data_2,  X_Dir, Y_Dir, get_landmark_points, evaluate_model
+from RPLCD.i2c import CharLCD
+from time import sleep
+import time
+from datetime import datetime
+
 
 data_collection_fn = collect_landmark_data_2
 
@@ -233,3 +238,15 @@ def gaze_tracking(camera_instance, MOVE):
             if y_pos < corner_tolerance or y_pos > screen_height - corner_tolerance:
                 return
         pyautogui.moveTo(x_pos, y_pos)
+
+
+def display_message(msg):
+    # Adjust I2C address if needed (use i2cdetect to check)
+    lcd = CharLCD(i2c_expander='PCF8574', address=0x27,
+                  port=1, cols=16, rows=2)
+
+    lcd.clear()
+    lcd.write_string(msg)
+    sleep(5)
+
+    lcd.clear()

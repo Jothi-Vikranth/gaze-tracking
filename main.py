@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import threading
 from time import sleep
 from pydantic import BaseModel
-from components import caliberate, speak, Camera, gaze_tracking
+from components import caliberate, speak, Camera, gaze_tracking, display_message
 
 
 app = FastAPI()
@@ -43,6 +43,10 @@ def continuously_running_function():
     print("Function stopped.")
 
 
+class MessageItem(BaseModel):
+    message: str
+
+
 @app.get("/")
 def read_root():
     return {"message": "Hello, FastAPI!"}
@@ -55,9 +59,11 @@ def trigger_caliberate():
 
 
 @app.post("/showMessage")
-def show_message(message: str):
+def show_message(message_item: MessageItem):
 
+    message = message_item.message
     speak(message)
+    display_message(message)
     return {"message": "Success showing message"}
 
 
