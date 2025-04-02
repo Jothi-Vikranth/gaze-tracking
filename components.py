@@ -247,6 +247,4 @@ def display_message(msg):
 
     lcd.clear()
     lcd.write_string(msg)
-    sleep(5)
-
-    lcd.clear()
+    sleep(1)

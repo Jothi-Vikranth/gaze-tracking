@@ -44,6 +44,7 @@ class Speak:
     def __init__(self):
         if not hasattr(self, 'engine'):  # Initialize only once
             self.engine = pyttsx3.init()
+            self.engine.setProperty('rate', 120)
 
     def speak(self, message: str, wait=False):
         if self.engine is None:
@@ -712,22 +713,22 @@ class Camera:
     def __new__(cls):
         return cls
 
-    @ classmethod
+    @classmethod
     def get_camera(cls):
         assert cls.camera is not None, "Camera is not initialized"
         return cls.camera
 
-    @ classmethod
+    @classmethod
     def set_camera(cls):
         cls.camera = cv2.VideoCapture(0)
 
-    @ classmethod
+    @classmethod
     def check_camera_opened(cls):
         if not cls.camera:
             return False
         return cls.camera.isOpened()
 
-    @ classmethod
+    @classmethod
     def get_frame(cls):
         if not cls.check_camera_opened():
             cls.set_camera()
