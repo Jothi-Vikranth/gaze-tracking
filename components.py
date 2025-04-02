@@ -6,7 +6,7 @@ import threading
 from datetime import datetime
 import pyautogui
 from utils import Camera, Speak, get_data, collect_landmark_data_2,  X_Dir, Y_Dir, get_landmark_points, evaluate_model, train_model, Vertical, Horizontal
-# from RPLCD.i2c import CharLCD
+from RPLCD.i2c import CharLCD
 from time import sleep
 import time
 from datetime import datetime
