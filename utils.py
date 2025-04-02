@@ -44,7 +44,7 @@ class Speak:
     def __init__(self):
         if not hasattr(self, 'engine'):  # Initialize only once
             self.engine = pyttsx3.init()
-            self.engine.setProperty('rate', 120)
+            self.engine.setProperty('rate', 125)
 
     def speak(self, message: str, wait=False):
         if self.engine is None:
