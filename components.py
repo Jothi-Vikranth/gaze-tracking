@@ -5,8 +5,8 @@ from time import sleep
 import threading
 from datetime import datetime
 import pyautogui
-from utils import Camera, Speak, get_data, collect_landmark_data_2,  X_Dir, Y_Dir, get_landmark_points, evaluate_model
-from RPLCD.i2c import CharLCD
+from utils import Camera, Speak, get_data, collect_landmark_data_2,  X_Dir, Y_Dir, get_landmark_points, evaluate_model, train_model, Vertical, Horizontal
+# from RPLCD.i2c import CharLCD
 from time import sleep
 import time
 from datetime import datetime
@@ -196,7 +196,7 @@ def remove_files_if_exist():
 
 
 def caliberate():
-    # remove_files_if_exist()
+    remove_files_if_exist()
 
     camera_instance = Camera()
     camera_instance.set_camera()
@@ -204,6 +204,10 @@ def caliberate():
     app = MovingCircleApp()
     app.run()
     app.close_window()
+
+    # Training model
+    train_model(Vertical())
+    train_model(Horizontal())
 
 
 def speak(message):
